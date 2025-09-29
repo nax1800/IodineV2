@@ -10,18 +10,11 @@
 #include "FortPickup.h"
 #include "World.h"
 
+#include "McpProfileGroup.h"
+
 #include "UHook.h"
 
 void hkCollectGarbage() { return; }
-
-inline void (*o_DispatchRequest)(UMcpProfileGroup* a1, __int64* a2, int a3);
-inline void hk_DispatchRequest(UMcpProfileGroup* a1, __int64* a2, int a3)
-{
-    UE_LOG("Server", "Info", "DispatchRequest: a1: {}", reinterpret_cast<UObject*>(a1)->GetFullName());
-
-    *(int*)(__int64(a2) + 0x60) = 3;
-    return o_DispatchRequest(a1, a2, 3);
-}
 
 
 DWORD MainThread(LPVOID)
@@ -78,7 +71,8 @@ DWORD MainThread(LPVOID)
     FortPickup::Patch();
     World::Patch();
 
-    new UHook("MCP::DispatchRequest", 0x7F2370, hk_DispatchRequest, reinterpret_cast<void**>(&o_DispatchRequest));
+    McpProfileGroup::Patch();
+
     new UHook("CollectGarbage", 0x25151D0, hkCollectGarbage);
 
     return 1;

@@ -74,6 +74,9 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Engine\Source\Runtime\Engine\Private</Filter>
     </ClCompile>
+    <ClCompile Include="McpProfileGroup.cpp">
+      <Filter>FortniteGame\Plugins\OnlineGameplayFramework\Source\McpProfileSys\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -142,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="Actor.h">
       <Filter>Engine\Source\Runtime\Engine\Classes\GameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="McpProfileGroup.h">
+      <Filter>FortniteGame\Plugins\OnlineGameplayFramework\Source\McpProfileSys\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +285,24 @@
     </Filter>
     <Filter Include="FortniteGame\Source\FortniteGame\Public\Items">
       <UniqueIdentifier>{c8ea0084-22d4-4aee-b706-98d774223006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Plugins">
+      <UniqueIdentifier>{a656a088-26ea-4c40-ba04-951f53285b88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Plugins\OnlineGameplayFramework">
+      <UniqueIdentifier>{aea776f8-a239-40a1-b165-4e29f8b8f2a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Plugins\OnlineGameplayFramework\Source">
+      <UniqueIdentifier>{d58a2b4b-c348-4acf-990d-62ce04ec505a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Plugins\OnlineGameplayFramework\Source\McpProfileSys">
+      <UniqueIdentifier>{e5f8bb8e-0702-4ef0-9685-04ccdfd5996c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Plugins\OnlineGameplayFramework\Source\McpProfileSys\Public">
+      <UniqueIdentifier>{63a01226-965c-49a6-9e4b-08b787a399cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Plugins\OnlineGameplayFramework\Source\McpProfileSys\Private">
+      <UniqueIdentifier>{41c4a020-97b9-4823-a213-2e732ea37bab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

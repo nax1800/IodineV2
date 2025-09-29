@@ -166,6 +166,7 @@
     <ClInclude Include="FortPlayerControllerAthena.h" />
     <ClInclude Include="GameSession.h" />
     <ClInclude Include="LogMacros.h" />
+    <ClInclude Include="McpProfileGroup.h" />
     <ClInclude Include="MinWindows.h" />
     <ClInclude Include="NetDriver.h" />
     <ClInclude Include="pch.h" />
@@ -189,6 +190,7 @@
     <ClCompile Include="GameSession.cpp" />
     <ClCompile Include="LaunchWindows.cpp" />
     <ClCompile Include="LogMacros.cpp" />
+    <ClCompile Include="McpProfileGroup.cpp" />
     <ClCompile Include="NetworkDriver.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
