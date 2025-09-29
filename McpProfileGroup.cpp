@@ -1,16 +1,17 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "McpProfileGroup.h"
 
 #include "LogMacros.h"
 #include "UHook.h"
 
-void McpProfileGroup::hk_DispatchRequest(UMcpProfileGroup* a1, __int64* a2, int a3)
+void McpProfileGroup::hk_DispatchRequest(UMcpProfileGroup* McpProfileGroup, FProfileRequestContext* Context, int a3)
 {
-    UE_LOG("Server", "Info", "DispatchRequest: a1: {}", reinterpret_cast<UObject*>(a1)->GetFullName());
-    UE_LOG("Server", "Info", "DispatchRequest: a2: {}", reinterpret_cast<UObject*>(a2)->GetFullName());
+    UE_LOG("Server", "Info", "DispatchRequest: McpProfileGroup: {}", reinterpret_cast<UObject*>(McpProfileGroup)->GetFullName());
+    UE_LOG("Server", "Info", "DispatchRequest: Context.Status: {}", Context->GetStatus());
 
-    *(int*)(__int64(a2) + 0x60) = 3;
-    return o_DispatchRequest(a1, a2, 3);
+    Context->SetStatus(3);
+
+    return o_DispatchRequest(McpProfileGroup, Context, 3);
 }
 
 void McpProfileGroup::Patch()
