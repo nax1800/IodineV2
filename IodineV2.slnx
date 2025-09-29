@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="IodineV2.vcxproj" Id="8eed137c-0932-4fd1-802a-f0b5c6e69e13" />
+</Solution>

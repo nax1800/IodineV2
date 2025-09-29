@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="LaunchWindows.cpp">
+      <Filter>Engine\Source\Runtime\Launch\Private\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="UHook.cpp">
+      <Filter>Engine\Source\ThirdParty\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="LogMacros.cpp">
+      <Filter>Engine\Source\Runtime\Core\Private\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\SDK\SDK\Basic.cpp">
+      <Filter>Engine\Plugins\SDK\Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\SDK\SDK\CoreUObject_functions.cpp">
+      <Filter>Engine\Plugins\SDK\Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\SDK\SDK\Engine_functions.cpp">
+      <Filter>Engine\Plugins\SDK\Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\SDK\SDK\FortniteGame_functions.cpp">
+      <Filter>Engine\Plugins\SDK\Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\SDK\SDK\GameplayAbilities_functions.cpp">
+      <Filter>Engine\Plugins\SDK\Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\MinHook\src\trampoline.c">
+      <Filter>Engine\Plugins\MinHook\Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\MinHook\src\hook.c">
+      <Filter>Engine\Plugins\MinHook\Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\MinHook\src\hde\hde64.c">
+      <Filter>Engine\Plugins\MinHook\Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\MinHook\src\hde\hde32.c">
+      <Filter>Engine\Plugins\MinHook\Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\MinHook\src\buffer.c">
+      <Filter>Engine\Plugins\MinHook\Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreGlobals.cpp">
+      <Filter>Engine\Source\Runtime\Core\Private\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkDriver.cpp">
+      <Filter>Engine\Source\Runtime\Engine\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="FortGameModeAthena.cpp">
+      <Filter>FortniteGame\Source\FortniteGame\Private\Athena</Filter>
+    </ClCompile>
+    <ClCompile Include="UObjectGlobals.cpp">
+      <Filter>Engine\Source\Runtime\CoreUObject\Private\UObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSession.cpp">
+      <Filter>Engine\Source\Runtime\Engine\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="FortPlayerControllerAthena.cpp">
+      <Filter>FortniteGame\Source\FortniteGame\Private\Athena</Filter>
+    </ClCompile>
+    <ClCompile Include="FortInventory.cpp">
+      <Filter>FortniteGame\Source\FortniteGame\Private\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="FortPickup.cpp">
+      <Filter>FortniteGame\Source\FortniteGame\Private\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Engine\Source\Runtime\Engine\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Engine\Source\Runtime\Engine\Private</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="WindowsHWrapper.h">
+      <Filter>Engine\Source\Runtime\Core\Public\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="PreWindowsApi.h">
+      <Filter>Engine\Source\Runtime\Core\Public\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="MinWindows.h">
+      <Filter>Engine\Source\Runtime\Core\Public\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreTypes.h">
+      <Filter>Engine\Source\Runtime\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="PostWindowsApi.h">
+      <Filter>Engine\Source\Runtime\Core\Public\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreMiscDefines.h">
+      <Filter>Engine\Source\Runtime\Core\Public\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="UHook.h">
+      <Filter>Engine\Source\ThirdParty\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="LogMacros.h">
+      <Filter>Engine\Source\Runtime\Core\Public\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\SDK\SDK.hpp">
+      <Filter>Engine\Plugins\SDK\Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\MinHook\include\MinHook.h">
+      <Filter>Engine\Plugins\MinHook\Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreGlobals.h">
+      <Filter>Engine\Source\Runtime\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="NetDriver.h">
+      <Filter>Engine\Source\Runtime\Engine\Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ReplicationDriver.h">
+      <Filter>Engine\Source\Runtime\Engine\Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="FortGameModeAthena.h">
+      <Filter>FortniteGame\Source\FortniteGame\Public\Athena</Filter>
+    </ClInclude>
+    <ClInclude Include="UObjectGlobals.h">
+      <Filter>Engine\Source\Runtime\CoreUObject\Public\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSession.h">
+      <Filter>Engine\Source\Runtime\Engine\Classes\GameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="FortPlayerControllerAthena.h">
+      <Filter>FortniteGame\Source\FortniteGame\Public\Athena</Filter>
+    </ClInclude>
+    <ClInclude Include="FortInventory.h">
+      <Filter>FortniteGame\Source\FortniteGame\Public\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="FortPickup.h">
+      <Filter>FortniteGame\Source\FortniteGame\Public\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Engine\Source\Runtime\Engine\Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineBaseTypes.h">
+      <Filter>Engine\Source\Runtime\Engine\Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Engine\Source\Runtime\Engine\Classes\GameFramework</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{5d9ecaff-3ef8-4dde-b499-d8ac722c2e8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source">
+      <UniqueIdentifier>{57321d30-5493-44eb-a496-d0a6a5ff94de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime">
+      <UniqueIdentifier>{73fb9fc1-5313-4b78-a45f-c00258dad934}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Launch">
+      <UniqueIdentifier>{e435be5f-78b8-487d-8d5e-a2899ea86299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Launch\Private">
+      <UniqueIdentifier>{e7ffbf80-4d9f-41ec-b4f9-69c820356bf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Launch\Private\Windows">
+      <UniqueIdentifier>{73baace2-22ee-42a7-9787-47625e8b1c0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Core">
+      <UniqueIdentifier>{7393815b-25b0-44e5-8e50-27e5798dd0a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Core\Public">
+      <UniqueIdentifier>{ce2f2503-83fc-4715-b167-f432d2362947}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Core\Public\Windows">
+      <UniqueIdentifier>{158ce921-68cc-44ef-8010-c7521f97880a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Core\Public\Misc">
+      <UniqueIdentifier>{48a716c3-b841-4771-b5bd-9ab6009e46ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\ThirdParty">
+      <UniqueIdentifier>{41c778f3-5620-4419-b5a7-cd28b98aaf61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\ThirdParty\Public">
+      <UniqueIdentifier>{74e74717-57a2-4112-95ae-40a4472071c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\ThirdParty\Private">
+      <UniqueIdentifier>{98e5514a-e16d-496e-9e1e-1a6bb973cc27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Core\Public\Logging">
+      <UniqueIdentifier>{ef354d2a-ecb9-475d-9334-d40d7b7489f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Core\Private">
+      <UniqueIdentifier>{9899aef6-fb6e-48c1-b88e-09771b53640a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Core\Private\Logging">
+      <UniqueIdentifier>{740b2f01-05b0-4060-8dd0-e9506bc9490e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins">
+      <UniqueIdentifier>{e01b373e-59bf-4cb6-afe7-d308f4a49dd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\SDK">
+      <UniqueIdentifier>{f0a217bf-452b-469d-a409-7b599574bee3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\MinHook">
+      <UniqueIdentifier>{3f3c8de4-855c-4c11-9a1e-ff6ff5c7a5e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\SDK\Source">
+      <UniqueIdentifier>{0b5cf2d1-b497-41ba-ad54-30ca6cbab56d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\SDK\Source\Public">
+      <UniqueIdentifier>{59660c37-d54d-484e-850c-a5ca506b9809}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\SDK\Source\Private">
+      <UniqueIdentifier>{77c7f9ec-94a0-4dd7-8609-927dda6f0744}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\MinHook\Source">
+      <UniqueIdentifier>{32790087-6ee8-4c76-ab7a-ccda9470f3c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\MinHook\Source\Public">
+      <UniqueIdentifier>{0dc6b35c-60cf-4c40-826a-80d49d3e5d61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\MinHook\Source\Private">
+      <UniqueIdentifier>{9ec1d7e7-63a5-461f-9eb8-b83891447aee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Core\Private\Misc">
+      <UniqueIdentifier>{96fa1607-b913-4142-9e57-b53dba14505f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame">
+      <UniqueIdentifier>{b5f4ca72-2803-4d9b-90af-f4a39baa29b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source">
+      <UniqueIdentifier>{21517971-2f19-4236-ab66-d5a32c6633df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source\FortniteGame">
+      <UniqueIdentifier>{6a260cf0-a09f-4a80-9fa8-1007c0df232f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source\FortniteGame\Public">
+      <UniqueIdentifier>{b9f5724c-524b-482f-b531-70dc0deaf7d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source\FortniteGame\Private">
+      <UniqueIdentifier>{c251a648-2fc9-40b8-97e6-bfe894787260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Engine">
+      <UniqueIdentifier>{3e9f5827-7090-4164-9bc9-910fa916fba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Engine\Classes">
+      <UniqueIdentifier>{ae6779f4-7bf6-48ea-9d10-bfbbafd5c993}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Engine\Classes\Engine">
+      <UniqueIdentifier>{627b4741-57bd-4331-bb72-00ab06a821bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Engine\Private">
+      <UniqueIdentifier>{b82988cf-9dcd-4104-86f9-a2955d04d5bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source\FortniteGame\Public\Athena">
+      <UniqueIdentifier>{40660ce4-4681-4702-8891-5c76130761d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source\FortniteGame\Private\Athena">
+      <UniqueIdentifier>{89c6308c-4752-4850-929c-c5bae14845ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\CoreUObject">
+      <UniqueIdentifier>{877435f5-365d-4400-87cc-253ea1e89db5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\CoreUObject\Public">
+      <UniqueIdentifier>{98463f7b-dc5f-4e51-9c0d-1ba392d49bc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\CoreUObject\Private">
+      <UniqueIdentifier>{4ecd1631-0b46-4a7b-aca2-9eb989558d45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\CoreUObject\Private\UObject">
+      <UniqueIdentifier>{8e6e8c8e-3235-4c2b-8647-4bd41e1fbd91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\CoreUObject\Public\UObject">
+      <UniqueIdentifier>{c12dc1e5-e9c3-47c2-b017-bf94af845e0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Runtime\Engine\Classes\GameFramework">
+      <UniqueIdentifier>{1b278529-93c2-4e96-8e1a-1b8c195850b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source\FortniteGame\Private\Items">
+      <UniqueIdentifier>{f80ebca7-e437-46db-b438-e219cfd0d041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source\FortniteGame\Public\Items">
+      <UniqueIdentifier>{c8ea0084-22d4-4aee-b706-98d774223006}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
