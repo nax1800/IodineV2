@@ -9497,6 +9497,12 @@ bool AFortPlayerState::IsConsolePlayer() const
 	return Parms.ReturnValue;
 }
 
+void AFortPlayerState::ApplyCharacterCustomization(class AFortPawn* P)
+{
+	static auto Func = reinterpret_cast<void(*)(class AFortPlayerState*, class AFortPawn*)>(InSDKUtils::GetImageBase() + 0xF32360);
+	Func(this, P);
+}
+
 
 // Function FortniteGame.FortPlayerStateZone.OnRep_AccumulatedItems
 // (Final, Native, Public)

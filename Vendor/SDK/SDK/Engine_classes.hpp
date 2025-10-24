@@ -1185,6 +1185,9 @@ public:
 	uint8                                         Pad_D2C[0xCC];                                     // 0x0D2C(0x00CC)(Fixing Struct Size After Last Property [ Dumper-7 ])
 
 public:
+	class UNetDriver* CreateNetDriver(class UWorld* InWorld, class FName NetDriverDefinition);
+
+public:
 	static class UEngine* GetEngine();
 
 public:
@@ -1893,6 +1896,10 @@ public:
 	uint8                                         Pad_154[0x3AC];                                    // 0x0154(0x03AC)(Fixing Size After Last Property [ Dumper-7 ])
 	class UReplicationDriver*                     ReplicationDriver;                                 // 0x0500(0x0008)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
 	uint8                                         Pad_508[0x18];                                     // 0x0508(0x0018)(Fixing Struct Size After Last Property [ Dumper-7 ])
+
+public:
+	bool InitListen(void* InNotify, class FURL& ListenURL, bool bReuseAddressAndPort, class FString& Error);
+	void SetWorld(class UWorld* InWorld);
 
 public:
 	static class UClass* StaticClass()

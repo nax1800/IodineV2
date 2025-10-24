@@ -2462,6 +2462,9 @@ public:
 	bool IsConsolePlayer() const;
 
 public:
+	void ApplyCharacterCustomization(class AFortPawn* P);
+
+public:
 	static class UClass* StaticClass()
 	{
 		return StaticClassImpl<"FortPlayerState">();

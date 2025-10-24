@@ -26,21 +26,19 @@ DWORD MainThread(LPVOID)
     SetConsoleTitle(L"IodineV2 - Log");
 #endif // LOGGING
 
+    void** VFT = *reinterpret_cast<void***>(UFortKismetLibrary::GetDefaultObj());
+    UE_LOG("Launch", "Info", "FortKismetLibrary VFT: 0x{:x}", reinterpret_cast<uintptr_t>(VFT) - InSDKUtils::GetImageBase());
+
     Sleep(5000);
 
     if (MH_Initialize() != MH_OK)
     {
-        UE_LOG("Windows", "Error", "MinHook failed to initialize.");
+        UE_LOG("Launch", "Error", "MinHook failed to initialize.");
         ExitThread(1);
     }
 
-    if (!bUseGameSessions)
-    {
-        UE_LOG("Server", "Info", "NOT using Game Sessions.");
-
-        *(uint8_t*)((InSDKUtils::GetImageBase() + 0x255BB17) + 7) = 0x74;
-        UE_LOG("Server", "Info", "Matchmaking should now be supported.");
-    }
+    *(uint8_t*)((InSDKUtils::GetImageBase() + 0x255BB17) + 7) = 0x74;
+    UE_LOG("Launch", "Info", "Matchmaking should now be supported.");
 
     UKismetSystemLibrary::ExecuteConsoleCommand(UWorld::GetWorld(), L"open Athena_Terrain", nullptr);
     UWorld::GetWorld()->OwningGameInstance->LocalPlayers.Remove(0);

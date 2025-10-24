@@ -11174,10 +11174,14 @@ void UCheatManager::Walk()
 	Func->FunctionFlags = Flgs;
 }
 
+class UNetDriver* UEngine::CreateNetDriver(class UWorld* InWorld, class FName NetDriverDefinition)
+{
+	static auto Func = reinterpret_cast<class UNetDriver* (*)(class UEngine*, class UWorld*, class FName)>(InSDKUtils::GetImageBase() + 0x2501480);
+	return Func(this, InWorld, NetDriverDefinition);
+}
 
 // Predefined Function
 // Gets a pointer to a valid UObject of type UEngine
-
 class UEngine* UEngine::GetEngine()
 {
 	static UEngine* GEngine = nullptr;
@@ -13314,6 +13318,18 @@ void UNavigationSystem::UnregisterNavigationInvoker(class AActor* Invoker)
 	UObject::ProcessEvent(Func, &Parms);
 
 	Func->FunctionFlags = Flgs;
+}
+
+bool UNetDriver::InitListen(void* InNotify, class FURL& ListenURL, bool bReuseAddressAndPort, class FString& Error)
+{
+	static auto Func = reinterpret_cast<bool(*)(class UNetDriver*, void*, class FURL&, bool, class FString&)> (InSDKUtils::GetImageBase() + 0x345650);
+	return Func(this, InNotify, ListenURL, false, Error);
+}
+
+void UNetDriver::SetWorld(class UWorld* InWorld)
+{
+	static auto Func = reinterpret_cast<void(*)(class UNetDriver*, class UWorld*)>(InSDKUtils::GetImageBase() + 0x22B56F0);
+	return Func(this, InWorld);
 }
 
 

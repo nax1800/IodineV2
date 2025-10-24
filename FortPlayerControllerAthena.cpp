@@ -5,18 +5,18 @@
 #include "CoreGlobals.h"
 #include "FortInventory.h"
 
-void FortPlayerControllerAthena::hk_ServerAcknowledgePossession(AFortPlayerControllerAthena* PlayerController, APlayerPawn_Athena_C* Pawn)
+void FortPlayerControllerAthena::hk_ServerAcknowledgePossession(AFortPlayerControllerAthena* Context, APlayerPawn_Athena_C* Pawn)
 {
 	if (!Pawn)
 		return;
 
-	PlayerController->AcknowledgedPawn = Pawn;
+	Context->AcknowledgedPawn = Pawn;
 
-	AFortPlayerStateAthena* PlayerState = reinterpret_cast<AFortPlayerStateAthena*>(PlayerController->PlayerState);
+	AFortPlayerStateAthena* PlayerState = reinterpret_cast<AFortPlayerStateAthena*>(Context->PlayerState);
 	if (!PlayerState)
 		return;
 
-	FFortAthenaLoadout& CustomizationLoadout = PlayerController->CustomizationLoadout;
+	FFortAthenaLoadout& CustomizationLoadout = Context->CustomizationLoadout;
 
 	if (!CustomizationLoadout.Character)
 		return;
@@ -29,28 +29,27 @@ void FortPlayerControllerAthena::hk_ServerAcknowledgePossession(AFortPlayerContr
 
 	PlayerState->HeroType = CustomizationLoadout.Character->HeroDefinition;
 	PlayerState->OnRep_HeroType();
-
-	reinterpret_cast<void(*)(void*, void*)>(InSDKUtils::GetImageBase() + 0xF32360)(PlayerState, Pawn);
+	PlayerState->ApplyCharacterCustomization(Pawn);
 }
 
-void FortPlayerControllerAthena::hk_ServerReadyToStartMatch(AFortPlayerControllerAthena* PlayerController)
+void FortPlayerControllerAthena::hk_ServerReadyToStartMatch(AFortPlayerControllerAthena* Context)
 {
-	AFortPlayerStateAthena* PlayerState = reinterpret_cast<AFortPlayerStateAthena*>(PlayerController->PlayerState);
+	AFortPlayerStateAthena* PlayerState = reinterpret_cast<AFortPlayerStateAthena*>(Context->PlayerState);
 	if (!PlayerState)
-		return o_ServerReadyToStartMatch(PlayerController);
+		return o_ServerReadyToStartMatch(Context);
 
 	//Abilities::ApplyAbilities(PlayerState);
 
 	for (FItemAndCount& StartingItem : GetGameMode()->StartingItems)
 	{
-		FortInventory::AddItem(PlayerController, StartingItem.Item, StartingItem.Count);
+		FortInventory::AddItem(Context, StartingItem.Item, StartingItem.Count);
 	}
 
-	FortInventory::AddItem(PlayerController, PlayerController->CustomizationLoadout.Pickaxe->WeaponDefinition);
+	FortInventory::AddItem(Context, Context->CustomizationLoadout.Pickaxe->WeaponDefinition);
 
-	PlayerController->MatchReport = reinterpret_cast<UAthenaPlayerMatchReport*>(UGameplayStatics::SpawnObject(UAthenaPlayerMatchReport::StaticClass(), PlayerController));
-	PlayerController->RecordMatchStats();
-	PlayerController->RecordTeamStats();
+	Context->MatchReport = reinterpret_cast<UAthenaPlayerMatchReport*>(UGameplayStatics::SpawnObject(UAthenaPlayerMatchReport::StaticClass(), Context));
+	Context->RecordMatchStats();
+	Context->RecordTeamStats();
 
 	PlayerState->SquadId = (uint8)PlayerState->TeamIndex - 2;
 	PlayerState->OnRep_PlayerTeam();
@@ -58,19 +57,19 @@ void FortPlayerControllerAthena::hk_ServerReadyToStartMatch(AFortPlayerControlle
 
 	PlayerState->WorldPlayerId = PlayerState->PlayerID;
 
-	return o_ServerReadyToStartMatch(PlayerController);
+	return o_ServerReadyToStartMatch(Context);
 }
 
-void FortPlayerControllerAthena::hk_ServerExecuteInventoryItem(AFortPlayerControllerAthena* PlayerController, FGuid ItemGuid)
+void FortPlayerControllerAthena::hk_ServerExecuteInventoryItem(AFortPlayerControllerAthena* Context, FGuid ItemGuid)
 {
-	if (PlayerController->IsInAircraft())
+	if (Context->IsInAircraft())
 		return;
 
-	APlayerPawn_Athena_C* Pawn = reinterpret_cast<APlayerPawn_Athena_C*>(PlayerController->Pawn);
+	APlayerPawn_Athena_C* Pawn = reinterpret_cast<APlayerPawn_Athena_C*>(Context->Pawn);
 	if (!Pawn)
 		return;
 
-	FFortItemEntry* FoundReplicatedEntry = FortInventory::FindItem(PlayerController, ItemGuid);
+	FFortItemEntry* FoundReplicatedEntry = FortInventory::FindItem(Context, ItemGuid);
 	if (!FoundReplicatedEntry)
 		return;
 

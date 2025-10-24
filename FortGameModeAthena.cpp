@@ -9,12 +9,12 @@
 
 #include "FortInventory.h"
 
-bool FortGameModeAthena::hk_ReadyToStartMatch(AFortGameModeAthena* GameMode)
+bool FortGameModeAthena::hk_ReadyToStartMatch(AFortGameModeAthena* Context)
 {
-	AFortGameStateAthena* GameState = reinterpret_cast<AFortGameStateAthena*>(GameMode->GameState);
+	AFortGameStateAthena* GameState = reinterpret_cast<AFortGameStateAthena*>(Context->GameState);
 	if (!GameState) return false;
 
-	if (!bIsPlaylistSet)
+	if (!GameState->CurrentPlaylistData)
 	{
 		UFortPlaylistAthena* Playlist = reinterpret_cast<UFortPlaylistAthena*>(StaticFindObject(UFortPlaylistAthena::StaticClass(), nullptr, PlaylistPath));
 		if (!Playlist)
@@ -28,28 +28,25 @@ bool FortGameModeAthena::hk_ReadyToStartMatch(AFortGameModeAthena* GameMode)
 		GameState->OnRep_CurrentPlaylistData();
 		GameState->OnRep_CurrentPlaylistId();
 
-		GameMode->CurrentPlaylistId = Playlist->PlaylistId;
-		GameMode->CurrentPlaylistName = Playlist->PlaylistName;
+		Context->CurrentPlaylistId = Playlist->PlaylistId;
+		Context->CurrentPlaylistName = Playlist->PlaylistName;
 
-		GameMode->FriendlyFireType = Playlist->FriendlyFireType;
-		GameMode->FortGameSession->MaxPlayers = Playlist->MaxPlayers;
-		GameMode->FortGameSession->MaxPartySize = Playlist->MaxSocialPartySize;
+		UE_LOG("GameMode", "Info", "Playlist is set. ({})", Context->CurrentPlaylistName.ToString());
 
-		bIsPlaylistSet = true;
+		Context->FriendlyFireType = Playlist->FriendlyFireType;
+		Context->FortGameSession->MaxPlayers = Playlist->MaxPlayers;
+		Context->FortGameSession->MaxPartySize = Playlist->MaxSocialPartySize;
 	}
 
-	if (!GameState->MapInfo)
-		return false;
+	if (!GameState->MapInfo) return false;
 
-	if (!bIsServerListening)
+	if (!Context->bWorldIsReady)
 	{
-		GameMode->WarmupRequiredPlayerCount = 1;
+		Context->WarmupRequiredPlayerCount = 1;
 
 		UWorld* World = UWorld::GetWorld();
-
-		UNetDriver* NetDriver = reinterpret_cast<UNetDriver * (*)(UEngine*, UWorld*, FName)>(InSDKUtils::GetImageBase() + 0x2501480)(UEngine::GetEngine(), UWorld::GetWorld(), FName(282));
-		if (!NetDriver)
-			return false;
+		UNetDriver* NetDriver = UEngine::GetEngine()->CreateNetDriver(World, FName(282));
+		if (!NetDriver) return false;
 
 		World->NetDriver = NetDriver;
 		NetDriver->World = World;
@@ -59,37 +56,35 @@ bool FortGameModeAthena::hk_ReadyToStartMatch(AFortGameModeAthena* GameMode)
 		FURL URL = FURL();
 		URL.Port = 7777;
 
-		if (!reinterpret_cast<bool(*)(UNetDriver*, void*, FURL&, bool, FString&)>(InSDKUtils::GetImageBase() + 0x345650)(NetDriver, World, URL, false, Error))
-			return false;
-
-		bIsServerListening = true;
-
-		reinterpret_cast<void(*)(UNetDriver*, UWorld*)>(InSDKUtils::GetImageBase() + 0x22B56F0)(NetDriver, World);
+		if (!NetDriver->InitListen(World, URL, false, Error)) return false;
+		NetDriver->SetWorld(World);
 
 		for (FLevelCollection& LevelCollection : World->LevelCollections) { LevelCollection.NetDriver = NetDriver; }
 
 		UE_LOG("Server", "Info", "Listening on port {}.", URL.Port);
 
-		GameMode->bWorldIsReady = true;
+		Context->bWorldIsReady = true;
 	}
 
-	return o_ReadyToStartMatch(GameMode);
+	return o_ReadyToStartMatch(Context);
 }
 
-APawn* FortGameModeAthena::hk_SpawnDefaultPawnFor(AFortGameModeAthena* GameMode, AFortPlayerControllerAthena* NewPlayer, AActor* StartSpot)
+APawn* FortGameModeAthena::hk_SpawnDefaultPawnFor(AFortGameModeAthena* Context, AFortPlayerControllerAthena* NewPlayer, AActor* StartSpot)
 {
 	if (!NewPlayer || !StartSpot)
 		return nullptr;
 
-	return GameMode->SpawnDefaultPawnAtTransform(NewPlayer, StartSpot->GetTransform());
+	return Context->SpawnDefaultPawnAtTransform(NewPlayer, StartSpot->GetTransform());
 }
 
-void FortGameModeAthena::hk_HandleStartingNewPlayer(AFortGameModeAthena* GameMode, AFortPlayerControllerAthena* NewPlayer)
+void FortGameModeAthena::hk_HandleStartingNewPlayer(AFortGameModeAthena* Context, AFortPlayerControllerAthena* NewPlayer)
 {
-	if (!NewPlayer)
-		return o_HandleStartingNewPlayer(GameMode, NewPlayer);
+	UE_LOG("GameMode", "Info", "HandleStartingNewPlayer called.");
 
-	return o_HandleStartingNewPlayer(GameMode, NewPlayer);
+	if (!NewPlayer)
+		return o_HandleStartingNewPlayer(Context, NewPlayer);
+
+	return o_HandleStartingNewPlayer(Context, NewPlayer);
 }
 
 void FortGameModeAthena::Patch()
