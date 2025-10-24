@@ -155,6 +155,7 @@
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbilitySystemComponent.h" />
     <ClInclude Include="Actor.h" />
     <ClInclude Include="CoreGlobals.h" />
     <ClInclude Include="CoreMiscDefines.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AbilitySystemComponent.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="CoreGlobals.cpp" />
     <ClCompile Include="FortGameModeAthena.cpp" />

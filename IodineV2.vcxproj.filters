@@ -77,6 +77,9 @@
     <ClCompile Include="McpProfileGroup.cpp">
       <Filter>FortniteGame\Plugins\OnlineGameplayFramework\Source\McpProfileSys\Private</Filter>
     </ClCompile>
+    <ClCompile Include="AbilitySystemComponent.cpp">
+      <Filter>Engine\Plugins\Runtime\GameplayAbilities\Source\GameplayAbilities\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -148,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="McpProfileGroup.h">
       <Filter>FortniteGame\Plugins\OnlineGameplayFramework\Source\McpProfileSys\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AbilitySystemComponent.h">
+      <Filter>Engine\Plugins\Runtime\GameplayAbilities\Source\GameplayAbilities\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -303,6 +309,24 @@
     </Filter>
     <Filter Include="FortniteGame\Plugins\OnlineGameplayFramework\Source\McpProfileSys\Private">
       <UniqueIdentifier>{41c4a020-97b9-4823-a213-2e732ea37bab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\Runtime">
+      <UniqueIdentifier>{6212a71a-8bad-47f6-9f81-ced9aced57e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\Runtime\GameplayAbilities">
+      <UniqueIdentifier>{4fa25511-9cd2-46a9-9ffd-dc3747b8db12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\Runtime\GameplayAbilities\Source">
+      <UniqueIdentifier>{9683d60e-113f-4f1b-b493-8c8968661957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\Runtime\GameplayAbilities\Source\GameplayAbilities">
+      <UniqueIdentifier>{e34b87cb-7953-4339-bdee-54d07a0857a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\Runtime\GameplayAbilities\Source\GameplayAbilities\Public">
+      <UniqueIdentifier>{b9969ef8-cd31-4be2-a861-313ce10d5744}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Plugins\Runtime\GameplayAbilities\Source\GameplayAbilities\Private">
+      <UniqueIdentifier>{bba743ec-7672-4848-aa77-af0745fe63e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

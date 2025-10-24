@@ -4265,6 +4265,23 @@ struct FGameplayEffectSpecHandle UAbilitySystemComponent::MakeOutgoingSpec(TSubc
 	return Parms.ReturnValue;
 }
 
+struct FGameplayAbilitySpecHandle UAbilitySystemComponent::GiveAbility(struct FGameplayAbilitySpec& Spec)
+{
+	static auto Func = reinterpret_cast<struct FGameplayAbilitySpecHandle* (*)(class UAbilitySystemComponent*, struct FGameplayAbilitySpecHandle*, struct FGameplayAbilitySpec)>(InSDKUtils::GetImageBase() + 0x527580);
+	return *Func(this, &Spec.Handle, Spec);
+}
+
+struct FGameplayAbilitySpecHandle UAbilitySystemComponent::GiveAbilityAndActivateOnce(struct FGameplayAbilitySpec& Spec)
+{
+	static auto Func = reinterpret_cast<FGameplayAbilitySpecHandle* (*)(class UAbilitySystemComponent*, struct FGameplayAbilitySpecHandle*, struct FGameplayAbilitySpec)>(InSDKUtils::GetImageBase() + 0x5276a0);
+	return *Func(this, &Spec.Handle, Spec);
+}
+
+bool UAbilitySystemComponent::InternalTryActivateAbility(struct FGameplayAbilitySpecHandle Handle, struct FPredictionKey InPredictionKey, class UGameplayAbility** OutInstancedAbility, void* OnGameplayAbilityEndedDelegate, struct FGameplayEventData* TriggerEventData)
+{
+	static auto Func = reinterpret_cast<bool (*)(class UAbilitySystemComponent*, struct FGameplayAbilitySpecHandle, struct FPredictionKey, class UGameplayAbility**, void*, struct FGameplayEventData*)>(InSDKUtils::GetImageBase() + 0x528b50);
+	return Func(this, Handle, InPredictionKey, OutInstancedAbility, OnGameplayAbilityEndedDelegate, TriggerEventData);
+}
 
 // Function GameplayAbilities.GameplayAbilityWorldReticle.FaceTowardSource
 // (Final, Native, Public, BlueprintCallable)

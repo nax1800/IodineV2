@@ -389,6 +389,11 @@ public:
 	struct FGameplayEffectSpecHandle MakeOutgoingSpec(TSubclassOf<class UGameplayEffect> GameplayEffectClass, float Level, const struct FGameplayEffectContextHandle& Context) const;
 
 public:
+	struct FGameplayAbilitySpecHandle GiveAbility(struct FGameplayAbilitySpec& AbilitySpec);
+	struct FGameplayAbilitySpecHandle GiveAbilityAndActivateOnce(struct FGameplayAbilitySpec& AbilitySpec);
+	bool InternalTryActivateAbility(struct FGameplayAbilitySpecHandle AbilityToActivate, struct FPredictionKey InPredictionKey = FPredictionKey(), class UGameplayAbility** OutInstancedAbility = nullptr, void* OnGameplayAbilityEndedDelegate = nullptr, struct FGameplayEventData* TriggerEventData = nullptr);
+
+public:
 	static class UClass* StaticClass()
 	{
 		return StaticClassImpl<"AbilitySystemComponent">();

@@ -5,6 +5,8 @@
 #include "CoreGlobals.h"
 #include "FortInventory.h"
 
+#include "AbilitySystemComponent.h"
+
 void FortPlayerControllerAthena::hk_ServerAcknowledgePossession(AFortPlayerControllerAthena* Context, APlayerPawn_Athena_C* Pawn)
 {
 	if (!Pawn)
@@ -38,7 +40,7 @@ void FortPlayerControllerAthena::hk_ServerReadyToStartMatch(AFortPlayerControlle
 	if (!PlayerState)
 		return o_ServerReadyToStartMatch(Context);
 
-	//Abilities::ApplyAbilities(PlayerState);
+	AbilitySystemComponent::ApplyAbilities(PlayerState);
 
 	for (FItemAndCount& StartingItem : GetGameMode()->StartingItems)
 	{
