@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "AbilitySystemComponent.h"
 
+#include "UHook.h"
+
 #include "UObjectGlobals.h"
 
 FGameplayAbilitySpec* AbilitySystemComponent::FindAbilitySpecFromHandle(UAbilitySystemComponent* Context, FGameplayAbilitySpecHandle Handle)
@@ -16,7 +18,7 @@ FGameplayAbilitySpec* AbilitySystemComponent::FindAbilitySpecFromHandle(UAbility
     return nullptr;
 }
 
-void AbilitySystemComponent::hkInternalServerTryActivateAbility(UAbilitySystemComponent* Context, FGameplayAbilitySpecHandle Handle, bool InputPressed, const FPredictionKey& PredictionKey, FGameplayEventData* TriggerEventData)
+void AbilitySystemComponent::hk_InternalServerTryActivateAbility(UAbilitySystemComponent* Context, FGameplayAbilitySpecHandle Handle, bool InputPressed, const FPredictionKey& PredictionKey, FGameplayEventData* TriggerEventData)
 {
     FGameplayAbilitySpec* Spec = FindAbilitySpecFromHandle(Context, Handle);
     if (!Spec)
@@ -96,4 +98,10 @@ void AbilitySystemComponent::ApplyAbilities(AFortPlayerStateAthena* PlayerState)
     static auto AbilitySet = reinterpret_cast<UFortAbilitySet*>(StaticFindObject(UFortAbilitySet::StaticClass(), nullptr, L"/Game/Abilities/Player/Generic/Traits/DefaultPlayer/GAS_DefaultPlayer.GAS_DefaultPlayer"));
     TArray<TSubclassOf<UFortGameplayAbility>> GameplayAbilities = AbilitySet->GameplayAbilities;
     for (int i = 0; i < GameplayAbilities.Num(); i++) { GrantGameplayAbility(PlayerState, GameplayAbilities[i].Get()); }
+}
+
+void AbilitySystemComponent::Patch()
+{
+    void** VFT = *reinterpret_cast<void***>(UFortAbilitySystemComponentAthena::GetDefaultObj());
+    new UHook("AbilitySystemComponent::InternalServerTryActivateAbility", VFT, 0xCB, hk_InternalServerTryActivateAbility);
 }

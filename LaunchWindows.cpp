@@ -11,6 +11,7 @@
 #include "World.h"
 
 #include "McpProfileGroup.h"
+#include "AbilitySystemComponent.h"
 
 #include "UHook.h"
 
@@ -70,6 +71,7 @@ DWORD MainThread(LPVOID)
     World::Patch();
 
     McpProfileGroup::Patch();
+    AbilitySystemComponent::Patch();
 
     new UHook("CollectGarbage", 0x25151D0, hkCollectGarbage);
 
