@@ -10,6 +10,9 @@ public:
 
 	static void hk_ServerExecuteInventoryItem(AFortPlayerControllerAthena* Context, FGuid ItemGuid);
 
+	static void hk_ServerReturnToMainMenu(AFortPlayerControllerAthena* Context);
+	static void hk_ServerPlayEmoteItem(AFortPlayerController* Context, UFortMontageItemDefinitionBase* EmoteAsset);
+
 	static void Patch();
 };
 

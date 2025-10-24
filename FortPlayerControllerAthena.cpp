@@ -96,10 +96,45 @@ void FortPlayerControllerAthena::hk_ServerExecuteInventoryItem(AFortPlayerContro
 	Pawn->EquipWeaponDefinition(ItemDefinition, ItemGuid);
 }
 
+void FortPlayerControllerAthena::hk_ServerReturnToMainMenu(AFortPlayerControllerAthena* Context)
+{
+	if (!Context) return;
+
+	Context->ClientReturnToMainMenu(L"");
+}
+
+void FortPlayerControllerAthena::hk_ServerPlayEmoteItem(AFortPlayerController* Context, UFortMontageItemDefinitionBase* EmoteAsset)
+{
+	if (!Context) return;
+
+	auto PlayerState = reinterpret_cast<AFortPlayerStateAthena*>(Context->PlayerState);
+	auto Pawn = reinterpret_cast<APlayerPawn_Athena_C*>(Context->Pawn);
+
+	if (!EmoteAsset || !PlayerState || !Pawn)
+		return;
+
+	UFortAbilitySystemComponent* AbilitySystemComponent = PlayerState->AbilitySystemComponent;
+
+	UObject* AbilityToUse = nullptr;
+	bool bShouldBeAbilityToUse = false;
+
+	if (!AbilityToUse)
+		AbilityToUse = UGAB_Emote_Generic_C::StaticClass()->DefaultObject;
+
+	FGameplayAbilitySpec Spec{};
+
+	static auto FGameplayAbilitySpec_Construct = reinterpret_cast<void (*)(const struct FGameplayAbilitySpec*, class UObject*, int, int, class UObject*)>(InSDKUtils::GetImageBase() + 0x103da30);
+	FGameplayAbilitySpec_Construct(&Spec, reinterpret_cast<UGameplayAbility*>(AbilityToUse), 1, -1, EmoteAsset);
+
+	AbilitySystemComponent->GiveAbilityAndActivateOnce(Spec);
+}
+
 void FortPlayerControllerAthena::Patch()
 {
 	void** VFT = *reinterpret_cast<void***>(AAthena_PlayerController_C::GetDefaultObj());
 	new UHook("FortPlayerControllerAthena::ServerAcknowledgePossession", VFT, 0x104, hk_ServerAcknowledgePossession);
 	new UHook("FortPlayerControllerAthena::ServerReadyToStartMatch", VFT, 0x241, hk_ServerReadyToStartMatch, reinterpret_cast<void**>(&o_ServerReadyToStartMatch));
 	new UHook("FortPlayerControllerAthena::ServerExecuteInventoryItem", VFT, 0x1E5, hk_ServerExecuteInventoryItem);
+	new UHook("FortPlayerControllerAthena::ServerReturnToMainMenu", VFT, 0x23D, hk_ServerReturnToMainMenu);
+	new UHook("FortPlayerControllerAthena::ServerPlayEmoteItem", VFT, 0x1B3, hk_ServerPlayEmoteItem);
 }
