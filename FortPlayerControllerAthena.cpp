@@ -40,15 +40,6 @@ void FortPlayerControllerAthena::hk_ServerReadyToStartMatch(AFortPlayerControlle
 	if (!PlayerState)
 		return o_ServerReadyToStartMatch(Context);
 
-	AbilitySystemComponent::ApplyAbilities(PlayerState);
-
-	for (FItemAndCount& StartingItem : GetGameMode()->StartingItems)
-	{
-		FortInventory::AddItem(Context, StartingItem.Item, StartingItem.Count);
-	}
-
-	FortInventory::AddItem(Context, Context->CustomizationLoadout.Pickaxe->WeaponDefinition);
-
 	Context->MatchReport = reinterpret_cast<UAthenaPlayerMatchReport*>(UGameplayStatics::SpawnObject(UAthenaPlayerMatchReport::StaticClass(), Context));
 	Context->RecordMatchStats();
 	Context->RecordTeamStats();
@@ -103,30 +94,32 @@ void FortPlayerControllerAthena::hk_ServerReturnToMainMenu(AFortPlayerController
 	Context->ClientReturnToMainMenu(L"");
 }
 
-void FortPlayerControllerAthena::hk_ServerPlayEmoteItem(AFortPlayerController* Context, UFortMontageItemDefinitionBase* EmoteAsset)
+void FortPlayerControllerAthena::hk_ServerPlayEmoteItem(AFortPlayerControllerAthena* Context, UFortMontageItemDefinitionBase* EmoteAsset)
 {
 	if (!Context) return;
 
-	auto PlayerState = reinterpret_cast<AFortPlayerStateAthena*>(Context->PlayerState);
-	auto Pawn = reinterpret_cast<APlayerPawn_Athena_C*>(Context->Pawn);
+	AFortPlayerStateAthena* PlayerState = reinterpret_cast<AFortPlayerStateAthena*>(Context->PlayerState);
+	APlayerPawn_Athena_C* Pawn = reinterpret_cast<APlayerPawn_Athena_C*>(Context->Pawn);
 
 	if (!EmoteAsset || !PlayerState || !Pawn)
 		return;
 
 	UFortAbilitySystemComponent* AbilitySystemComponent = PlayerState->AbilitySystemComponent;
 
-	UObject* AbilityToUse = nullptr;
+	static UObject* AbilityToUse = UGAB_Emote_Generic_C::StaticClass()->DefaultObject;
 	bool bShouldBeAbilityToUse = false;
 
-	if (!AbilityToUse)
-		AbilityToUse = UGAB_Emote_Generic_C::StaticClass()->DefaultObject;
-
-	FGameplayAbilitySpec Spec{};
-
-	static auto FGameplayAbilitySpec_Construct = reinterpret_cast<void (*)(const struct FGameplayAbilitySpec*, class UObject*, int, int, class UObject*)>(InSDKUtils::GetImageBase() + 0x103da30);
-	FGameplayAbilitySpec_Construct(&Spec, reinterpret_cast<UGameplayAbility*>(AbilityToUse), 1, -1, EmoteAsset);
+	FGameplayAbilitySpec Spec = AbilitySystemComponent::ConstructSpec(reinterpret_cast<UGameplayAbility*>(AbilityToUse), 1, -1, EmoteAsset);
 
 	AbilitySystemComponent->GiveAbilityAndActivateOnce(Spec);
+}
+
+void FortPlayerControllerAthena::hk_ServerRemoveInventoryItem(AFortPlayerControllerAthena* Context, const FGuid& ItemGuid, int32 Count, bool bForceRemoveFromQuickBars, bool bForceRemoval)
+{
+	UE_LOG("PlayerController", "Info", "ServerRemoveInventoryItem Called.");
+	if (!Context) return;
+
+	FortInventory::RemoveItem(Context, ItemGuid, Count);
 }
 
 void FortPlayerControllerAthena::Patch()
@@ -137,4 +130,5 @@ void FortPlayerControllerAthena::Patch()
 	new UHook("FortPlayerControllerAthena::ServerExecuteInventoryItem", VFT, 0x1E5, hk_ServerExecuteInventoryItem);
 	new UHook("FortPlayerControllerAthena::ServerReturnToMainMenu", VFT, 0x23D, hk_ServerReturnToMainMenu);
 	new UHook("FortPlayerControllerAthena::ServerPlayEmoteItem", VFT, 0x1B3, hk_ServerPlayEmoteItem);
+	new UHook("FortPlayerControllerAthena::ServerRemoveInventoryItem", VFT, 0x1E1, hk_ServerRemoveInventoryItem);
 }

@@ -8,6 +8,7 @@
 #include "UObjectGlobals.h"
 
 #include "FortInventory.h"
+#include "AbilitySystemComponent.h"
 
 bool FortGameModeAthena::hk_ReadyToStartMatch(AFortGameModeAthena* Context)
 {
@@ -83,6 +84,11 @@ void FortGameModeAthena::hk_HandleStartingNewPlayer(AFortGameModeAthena* Context
 
 	if (!NewPlayer)
 		return o_HandleStartingNewPlayer(Context, NewPlayer);
+
+	AbilitySystemComponent::ApplyAbilities(reinterpret_cast<AFortPlayerStateAthena*>(NewPlayer->PlayerState));
+
+	for (FItemAndCount& StartingItem : GetGameMode()->StartingItems) { FortInventory::AddItem(NewPlayer, StartingItem.Item, StartingItem.Count); }
+	FortInventory::AddItem(NewPlayer, NewPlayer->CustomizationLoadout.Pickaxe->WeaponDefinition);
 
 	return o_HandleStartingNewPlayer(Context, NewPlayer);
 }

@@ -11,9 +11,9 @@ void NetDriver::hk_TickFlush(UNetDriver* NetDriver, float DeltaSeconds)
 
 	if (NetDriver->ClientConnections.Num() > 0 && !NetDriver->ClientConnections[0]->InternalAck)
 	{
-		if (ReplicationDriver::ShouldSetServerReplicateActors()) ReplicationDriver::SetServerReplicateActors(NetDriver->ReplicationDriver);
+		NetDriver->ReplicationDriver->ServerReplicateActors(DeltaSeconds);
 
-		ReplicationDriver::ServerReplicateActors();
+		if (GetAsyncKeyState(VK_F5) & 1) { UKismetSystemLibrary::ExecuteConsoleCommand(UWorld::GetWorld(), L"startaircraft", nullptr); }
 	}
 
 	return o_TickFlush(NetDriver, DeltaSeconds);

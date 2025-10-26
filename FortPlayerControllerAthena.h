@@ -11,7 +11,9 @@ public:
 	static void hk_ServerExecuteInventoryItem(AFortPlayerControllerAthena* Context, FGuid ItemGuid);
 
 	static void hk_ServerReturnToMainMenu(AFortPlayerControllerAthena* Context);
-	static void hk_ServerPlayEmoteItem(AFortPlayerController* Context, UFortMontageItemDefinitionBase* EmoteAsset);
+	static void hk_ServerPlayEmoteItem(AFortPlayerControllerAthena* Context, UFortMontageItemDefinitionBase* EmoteAsset);
+	
+	static void hk_ServerRemoveInventoryItem(AFortPlayerControllerAthena* Context, const FGuid& ItemGuid, int32 Count, bool bForceRemoveFromQuickBars, bool bForceRemoval);
 
 	static void Patch();
 };

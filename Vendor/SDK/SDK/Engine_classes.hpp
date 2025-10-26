@@ -2086,6 +2086,9 @@ public:
 	TSoftClassPtr<class UClass>                   DefaultReplicationDriverClass;                     // 0x0028(0x0028)(Config, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 
 public:
+	int32 ServerReplicateActors(float DeltaSeconds);
+
+public:
 	static class UClass* StaticClass()
 	{
 		return StaticClassImpl<"ReplicationDriver">();

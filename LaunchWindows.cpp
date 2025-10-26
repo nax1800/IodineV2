@@ -9,6 +9,7 @@
 #include "GameSession.h"
 #include "FortPickup.h"
 #include "World.h"
+#include "Engine.h"
 
 #include "McpProfileGroup.h"
 #include "AbilitySystemComponent.h"
@@ -69,6 +70,7 @@ DWORD MainThread(LPVOID)
     GameSession::Patch();
     FortPickup::Patch();
     World::Patch();
+    Engine::Patch();
 
     McpProfileGroup::Patch();
     AbilitySystemComponent::Patch();

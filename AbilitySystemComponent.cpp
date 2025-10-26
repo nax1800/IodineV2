@@ -43,6 +43,16 @@ void AbilitySystemComponent::hk_InternalServerTryActivateAbility(UAbilitySystemC
     }
 }
 
+FGameplayAbilitySpec AbilitySystemComponent::ConstructSpec(UGameplayAbility* InAbility, int32 InLevel = 1, int32 InInputID = -1, UObject* InSourceObject = nullptr)
+{
+    static auto Func = reinterpret_cast<void (*)(const FGameplayAbilitySpec*, UObject*, int, int, UObject*)>(InSDKUtils::GetImageBase() + 0x103da30);
+
+    FGameplayAbilitySpec NewSpec{};
+    Func(&NewSpec, InAbility, 1, -1, nullptr);
+
+    return NewSpec;
+}
+
 FGameplayAbilitySpec* AbilitySystemComponent::FindGameplayAbility(AFortPlayerStateAthena* PlayerState, UGameplayAbility* GameplayAbility)
 {
     UFortAbilitySystemComponent* AbilitySystemComponent = PlayerState->AbilitySystemComponent;
@@ -84,10 +94,7 @@ void AbilitySystemComponent::GrantGameplayAbility(AFortPlayerStateAthena* Player
     if (!AbilitySystemComponent)
         return;
 
-    FGameplayAbilitySpec NewSpec{};
-
-    static auto FGameplayAbilitySpec_Construct = reinterpret_cast<void (*)(const struct FGameplayAbilitySpec*, class UObject*, int, int, class UObject*)>(InSDKUtils::GetImageBase() + 0x103da30);
-    FGameplayAbilitySpec_Construct(&NewSpec, reinterpret_cast<UGameplayAbility*>(GameplayAbilityClass->DefaultObject), 1, -1, nullptr);
+    FGameplayAbilitySpec NewSpec = ConstructSpec(reinterpret_cast<UGameplayAbility*>(GameplayAbilityClass->DefaultObject), 1, -1, nullptr);
 
     AbilitySystemComponent->GiveAbility(NewSpec);
     return;

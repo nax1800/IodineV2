@@ -13434,6 +13434,14 @@ float USphereComponent::GetUnscaledSphereRadius() const
 	return Parms.ReturnValue;
 }
 
+int32 UReplicationDriver::ServerReplicateActors(float DeltaSeconds)
+{
+	void** RepDriverVFT = *reinterpret_cast<void***>(this);
+
+	static auto Func = reinterpret_cast<int32 (*)(UReplicationDriver*, float)>(RepDriverVFT[0x53]);
+	return Func(this, DeltaSeconds);
+}
+
 
 // Function Engine.PhysicalAnimationComponent.ApplyPhysicalAnimationProfileBelow
 // (Final, Native, Public, BlueprintCallable)
