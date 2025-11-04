@@ -83,6 +83,15 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Engine\Source\Runtime\Engine\Private</Filter>
     </ClCompile>
+    <ClCompile Include="BuildingSMActor.cpp">
+      <Filter>FortniteGame\Source\FortniteGame\Private\Building</Filter>
+    </ClCompile>
+    <ClCompile Include="FortPlayerPawnAthena.cpp">
+      <Filter>FortniteGame\Source\FortniteGame\Private\Athena</Filter>
+    </ClCompile>
+    <ClCompile Include="FortWeapon.cpp">
+      <Filter>FortniteGame\Source\FortniteGame\Private\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -160,6 +169,15 @@
     </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Engine\Source\Runtime\Engine\Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingSMActor.h">
+      <Filter>FortniteGame\Source\FortniteGame\Public\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="FortPlayerPawnAthena.h">
+      <Filter>FortniteGame\Source\FortniteGame\Public\Athena</Filter>
+    </ClInclude>
+    <ClInclude Include="FortWeapon.h">
+      <Filter>FortniteGame\Source\FortniteGame\Public\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +351,18 @@
     </Filter>
     <Filter Include="Engine\Plugins\Runtime\GameplayAbilities\Source\GameplayAbilities\Private">
       <UniqueIdentifier>{bba743ec-7672-4848-aa77-af0745fe63e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source\FortniteGame\Public\Building">
+      <UniqueIdentifier>{05e77368-7c23-47bb-9c77-fe004bb1fc7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source\FortniteGame\Private\Building">
+      <UniqueIdentifier>{0988e844-5c14-4682-942f-9d74231c4f51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source\FortniteGame\Private\Weapon">
+      <UniqueIdentifier>{a5c26d69-7cc8-4355-bc4d-3d93ea5aa31a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FortniteGame\Source\FortniteGame\Public\Weapon">
+      <UniqueIdentifier>{54c5a343-5dfd-44e8-974e-936b8444cd28}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

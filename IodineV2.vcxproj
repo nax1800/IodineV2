@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="AbilitySystemComponent.h" />
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="BuildingSMActor.h" />
     <ClInclude Include="CoreGlobals.h" />
     <ClInclude Include="CoreMiscDefines.h" />
     <ClInclude Include="CoreTypes.h" />
@@ -166,6 +167,8 @@
     <ClInclude Include="FortInventory.h" />
     <ClInclude Include="FortPickup.h" />
     <ClInclude Include="FortPlayerControllerAthena.h" />
+    <ClInclude Include="FortPlayerPawnAthena.h" />
+    <ClInclude Include="FortWeapon.h" />
     <ClInclude Include="GameSession.h" />
     <ClInclude Include="LogMacros.h" />
     <ClInclude Include="McpProfileGroup.h" />
@@ -185,12 +188,15 @@
   <ItemGroup>
     <ClCompile Include="AbilitySystemComponent.cpp" />
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="BuildingSMActor.cpp" />
     <ClCompile Include="CoreGlobals.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FortGameModeAthena.cpp" />
     <ClCompile Include="FortInventory.cpp" />
     <ClCompile Include="FortPickup.cpp" />
     <ClCompile Include="FortPlayerControllerAthena.cpp" />
+    <ClCompile Include="FortPlayerPawnAthena.cpp" />
+    <ClCompile Include="FortWeapon.cpp" />
     <ClCompile Include="GameSession.cpp" />
     <ClCompile Include="LaunchWindows.cpp" />
     <ClCompile Include="LogMacros.cpp" />

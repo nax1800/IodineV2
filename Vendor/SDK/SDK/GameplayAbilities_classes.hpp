@@ -390,7 +390,7 @@ public:
 
 public:
 	struct FGameplayAbilitySpecHandle GiveAbility(struct FGameplayAbilitySpec& AbilitySpec);
-	struct FGameplayAbilitySpecHandle GiveAbilityAndActivateOnce(struct FGameplayAbilitySpec& AbilitySpec);
+	void GiveAbilityAndActivateOnce(struct FGameplayAbilitySpec& AbilitySpec);
 	bool InternalTryActivateAbility(struct FGameplayAbilitySpecHandle AbilityToActivate, struct FPredictionKey InPredictionKey = FPredictionKey(), class UGameplayAbility** OutInstancedAbility = nullptr, void* OnGameplayAbilityEndedDelegate = nullptr, struct FGameplayEventData* TriggerEventData = nullptr);
 
 public:

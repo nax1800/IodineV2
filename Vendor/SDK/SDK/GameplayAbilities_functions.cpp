@@ -4271,10 +4271,10 @@ struct FGameplayAbilitySpecHandle UAbilitySystemComponent::GiveAbility(struct FG
 	return *Func(this, &Spec.Handle, Spec);
 }
 
-struct FGameplayAbilitySpecHandle UAbilitySystemComponent::GiveAbilityAndActivateOnce(struct FGameplayAbilitySpec& Spec)
+void UAbilitySystemComponent::GiveAbilityAndActivateOnce(struct FGameplayAbilitySpec& Spec)
 {
 	static auto Func = reinterpret_cast<FGameplayAbilitySpecHandle* (*)(class UAbilitySystemComponent*, struct FGameplayAbilitySpecHandle*, struct FGameplayAbilitySpec)>(InSDKUtils::GetImageBase() + 0x5276a0);
-	return *Func(this, &Spec.Handle, Spec);
+	Func(this, &Spec.Handle, Spec);
 }
 
 bool UAbilitySystemComponent::InternalTryActivateAbility(struct FGameplayAbilitySpecHandle Handle, struct FPredictionKey InPredictionKey, class UGameplayAbility** OutInstancedAbility, void* OnGameplayAbilityEndedDelegate, struct FGameplayEventData* TriggerEventData)

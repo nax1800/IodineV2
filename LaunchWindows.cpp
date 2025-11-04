@@ -6,10 +6,13 @@
 #include "NetDriver.h"
 #include "FortGameModeAthena.h"
 #include "FortPlayerControllerAthena.h"
+#include "FortPlayerPawnAthena.h"
+#include "FortWeapon.h"
 #include "GameSession.h"
 #include "FortPickup.h"
 #include "World.h"
 #include "Engine.h"
+#include "BuildingSMActor.h"
 
 #include "McpProfileGroup.h"
 #include "AbilitySystemComponent.h"
@@ -42,10 +45,12 @@ DWORD MainThread(LPVOID)
     *(uint8_t*)((InSDKUtils::GetImageBase() + 0x255BB17) + 7) = 0x74;
     UE_LOG("Launch", "Info", "Matchmaking should now be supported.");
 
+    *(bool*)(InSDKUtils::GetImageBase() + 0x4A9CA14) = false;
+
     UKismetSystemLibrary::ExecuteConsoleCommand(UWorld::GetWorld(), L"open Athena_Terrain", nullptr);
     UWorld::GetWorld()->OwningGameInstance->LocalPlayers.Remove(0);
 
-    for (uintptr_t FuncToNull : vector<uintptr_t>{ 0xA767B0, 0xC22E90, 0xF1C000 })
+    for (uintptr_t FuncToNull : vector<uintptr_t>{ 0xA767B0, 0xC22E90, 0x1BEE130, 0x22EFC10 })
     {
         uintptr_t func = InSDKUtils::GetImageBase() + FuncToNull;
         DWORD dwProtection;
@@ -62,15 +67,16 @@ DWORD MainThread(LPVOID)
     DWORD dwTemp;
     VirtualProtect((PVOID)ByteToPatch, 1, dwProtection, &dwTemp);
 
-    *(bool*)(InSDKUtils::GetImageBase() + 0x4A9CA14) = false;
-
     NetDriver::Patch();
     FortGameModeAthena::Patch();
     FortPlayerControllerAthena::Patch();
+    FortPlayerPawnAthena::Patch();
+    FortWeapon::Patch();
     GameSession::Patch();
     FortPickup::Patch();
     World::Patch();
     Engine::Patch();
+    BuildingSMActor::Patch();
 
     McpProfileGroup::Patch();
     AbilitySystemComponent::Patch();
