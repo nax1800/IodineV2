@@ -10,5 +10,5 @@ ENetMode Actor::hk_GetNetMode(AActor* Actor)
 
 void Actor::Patch()
 {
-	// new UHook("AActor::GetNetMode", 0, hk_GetNetMode);
+	// new UHook("Actor::GetNetMode", 0, hk_GetNetMode);
 }

@@ -140,6 +140,6 @@ AFortPickupAthena* FortPickup::SpawnPickup(UFortItemDefinition* ItemDefinition, 
 
 void FortPickup::Patch()
 {
-	new UHook("UFortPickup::CompletePickupAnimation", 0xD01680, hk_CompletePickupAnimation, reinterpret_cast<void**>(&o_CompletePickupAnimation));
+	new UHook("FortPickup::CompletePickupAnimation", 0xD01680, hk_CompletePickupAnimation, reinterpret_cast<void**>(&o_CompletePickupAnimation));
 }
 

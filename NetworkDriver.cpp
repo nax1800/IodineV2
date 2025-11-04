@@ -21,5 +21,5 @@ void NetDriver::hk_TickFlush(UNetDriver* NetDriver, float DeltaSeconds)
 
 void NetDriver::Patch()
 {
-	new UHook("UNetDriver::TickFlush", 0x22B6AB0, hk_TickFlush, reinterpret_cast<void**>(&o_TickFlush));
+	new UHook("NetDriver::TickFlush", 0x22B6AB0, hk_TickFlush, reinterpret_cast<void**>(&o_TickFlush));
 }

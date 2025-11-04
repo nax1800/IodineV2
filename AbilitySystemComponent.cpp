@@ -43,7 +43,7 @@ void AbilitySystemComponent::hk_InternalServerTryActivateAbility(UAbilitySystemC
     }
 }
 
-FGameplayAbilitySpec AbilitySystemComponent::ConstructSpec(UGameplayAbility* InAbility, int32 InLevel = 1, int32 InInputID = -1, UObject* InSourceObject = nullptr)
+FGameplayAbilitySpec AbilitySystemComponent::ConstructSpec(UGameplayAbility* InAbility, int32 InLevel, int32 InInputID, UObject* InSourceObject)
 {
     static auto Func = reinterpret_cast<void (*)(const FGameplayAbilitySpec*, UObject*, int, int, UObject*)>(InSDKUtils::GetImageBase() + 0x103da30);
 

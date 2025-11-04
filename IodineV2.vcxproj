@@ -160,6 +160,7 @@
     <ClInclude Include="CoreGlobals.h" />
     <ClInclude Include="CoreMiscDefines.h" />
     <ClInclude Include="CoreTypes.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineBaseTypes.h" />
     <ClInclude Include="FortGameModeAthena.h" />
     <ClInclude Include="FortInventory.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="AbilitySystemComponent.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="CoreGlobals.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FortGameModeAthena.cpp" />
     <ClCompile Include="FortInventory.cpp" />
     <ClCompile Include="FortPickup.cpp" />

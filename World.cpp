@@ -69,5 +69,5 @@ ENetMode World::hk_GetNetMode(UWorld* World) { return ENetMode::NM_DedicatedServ
 
 void World::Patch()
 {
-	new UHook("UWorld::GetNetMode", 0x2559520, hk_GetNetMode);
+	new UHook("World::GetNetMode", 0x2559520, hk_GetNetMode);
 }

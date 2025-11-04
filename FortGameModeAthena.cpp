@@ -95,8 +95,8 @@ void FortGameModeAthena::hk_HandleStartingNewPlayer(AFortGameModeAthena* Context
 
 void FortGameModeAthena::Patch()
 {
-	new UHook("AFortGameModeAthena::ReadyToStartMatch", 0x25BAC60, hk_ReadyToStartMatch, reinterpret_cast<void**>(&o_ReadyToStartMatch));
-	new UHook("AFortGameModeAthena::SpawnDefaultPawnFor", 0xA083A0, hk_SpawnDefaultPawnFor);
-	new UHook("AFortGameModeAthena::HandleStartingNewPlayer", 0x25BA780, hk_HandleStartingNewPlayer, reinterpret_cast<void**>(&o_HandleStartingNewPlayer));
+	new UHook("FortGameModeAthena::ReadyToStartMatch", 0x25BAC60, hk_ReadyToStartMatch, reinterpret_cast<void**>(&o_ReadyToStartMatch));
+	new UHook("FortGameModeAthena::SpawnDefaultPawnFor", 0xA083A0, hk_SpawnDefaultPawnFor);
+	new UHook("FortGameModeAthena::HandleStartingNewPlayer", 0x25BA780, hk_HandleStartingNewPlayer, reinterpret_cast<void**>(&o_HandleStartingNewPlayer));
 }
 
